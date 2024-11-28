@@ -1,11 +1,14 @@
 import express from "express";
-import { signup } from "../controllers/auth.js";
+import { signup, login } from "../controllers/auth.js";
+import { validateSignup } from "../middlewares/validateSignup.js";
+import { validateLogin } from "../middlewares/validateLogin.js";
+import { validateRequest } from "../middlewares/validateRequest.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", signup);
+authRouter.post("/signup", validateSignup, validateRequest, signup);
+authRouter.post("/login", validateLogin, validateRequest, login);
 
 // authRouter.post("/login", login);
-
 
 export default authRouter;

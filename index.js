@@ -2,8 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import authRouter from "./routes/auth.js";
+import corsOptions from "./config/corsOptions.js";
 
 dotenv.config();
 
@@ -16,6 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
     res.send("working");
