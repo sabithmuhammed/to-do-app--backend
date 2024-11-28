@@ -4,8 +4,9 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
-import authRouter from "./routes/auth.js";
+import authRouter from "./routes/authRoutes.js";
 import corsOptions from "./config/corsOptions.js";
+import todoRouter from "./routes/todoRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth/", authRouter);
+app.use("/api/v1/todo/", todoRouter);
 
 app.use(errorMiddleware);
 
